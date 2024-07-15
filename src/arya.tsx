@@ -58,13 +58,15 @@ export default function Command() {
     const currentDate = new Date();
     const formattedDate = `[${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}]`;
 
+    let selectedTemplateCard;
+
     if (values.templateCardId) {
       // Use template card data
-      const templateCard = templateCards.find(card => card.id === values.templateCardId);
-      if (templateCard) {
+      selectedTemplateCard = templateCards.find(card => card.id === values.templateCardId);
+      if (selectedTemplateCard) {
         cardData = {
-          name: `${values.cardTitle || templateCard.name} ${formattedDate}`,
-          desc: values.cardDescription || templateCard.desc,
+          name: `${values.cardTitle || selectedTemplateCard.name} ${formattedDate}`,
+          desc: values.cardDescription || selectedTemplateCard.desc,
           idList: TRELLO_LIST_ID,
           idMembers: TRELLO_MEMBERS.split(","),
           key: TRELLO_KEY,
@@ -90,7 +92,14 @@ export default function Command() {
         params: cardData,
       });
       if (response.status === 200 || response.status === 201) {
+        const newCardId = response.data.id;
         showToast({ title: "Card Created", message: "Successfully created Trello card" });
+        
+        // Copy checklists from template card if template was used
+        if (selectedTemplateCard) {
+          await copyChecklists(selectedTemplateCard.id, newCardId);
+        }
+
         pop(); // Close the form after successful submission
       } else {
         showToast({ title: "Error", message: `Failed to create card. HTTP Status Code: ${response.status}` });
@@ -103,6 +112,33 @@ export default function Command() {
         console.error("Unknown Error:", error);
         showToast({ title: "Error", message: "An unexpected error occurred" });
       }
+    }
+  }
+
+  async function copyChecklists(templateCardId: string, newCardId: string) {
+    try {
+      const response = await axios.get(`https://api.trello.com/1/cards/${templateCardId}/checklists`, {
+        params: {
+          key: TRELLO_KEY,
+          token: TRELLO_TOKEN,
+        },
+      });
+
+      const checklists = response.data;
+      for (const checklist of checklists) {
+        await axios.post(`https://api.trello.com/1/cards/${newCardId}/checklists`, null, {
+          params: {
+            key: TRELLO_KEY,
+            token: TRELLO_TOKEN,
+            idChecklistSource: checklist.id,
+          },
+        });
+      }
+
+      showToast({ title: "Checklists Copied", message: "Successfully copied checklists to the new card" });
+    } catch (error) {
+      console.error("Failed to copy checklists:", error);
+      showToast({ title: "Error", message: "Failed to copy checklists" });
     }
   }
 
