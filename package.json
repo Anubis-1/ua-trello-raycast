@@ -11,18 +11,21 @@
       "name": "arya",
       "title": "Arya",
       "description": "Create Trello Card for Arya in Web Support Board",
+      "icon": "arya.png",
       "mode": "view"
     },
     {
       "name": "christine",
       "title": "Christine",
       "description": "Create Trello Card for Christine in Sauers Board",
+      "icon": "christine.png",
       "mode": "view"
     },
     {
       "name": "kirsty",
       "title": "Kirsty",
       "description": "Create Trello Card for Kirsty in Sauers Board",
+      "icon": "kirsty.png",
       "mode": "view"
     }
   ],
@@ -57,7 +60,7 @@
         "description": "Trello Board ID for Arya",
         "name": "boardIdArya",
         "required": true,
-        "title": "Trello Board ID for Arya",
+        "title": "Trello List ID for Arya",
         "type": "textfield"
       },
       {
@@ -107,6 +110,13 @@
         "name": "userIdArya",
         "required": true,
         "title": "Trello User ID for Arya",
+        "type": "textfield"
+      },
+      {
+        "description": "Web Support Team Teamplates",
+        "name": "templatesListId",
+        "required": true,
+        "title": "Web Support Team Templates",
         "type": "textfield"
       }
     ],

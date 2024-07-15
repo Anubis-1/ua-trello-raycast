@@ -12,7 +12,7 @@ type ExtensionPreferences = {
   "apiKey": string,
   /** Trello API Token - Trello Token */
   "apiToken": string,
-  /** Trello Board ID for Arya - Trello Board ID for Arya */
+  /** Trello List ID for Arya - Trello Board ID for Arya */
   "boardIdArya": string,
   /** Trello List ID for Christine - Trello List ID for Christine */
   "boardIdChristine": string,
@@ -27,7 +27,9 @@ type ExtensionPreferences = {
   /** Trello User ID for Anu - Trello User ID for Anu */
   "UserIdAnu": string,
   /** Trello User ID for Arya - Trello User ID for Arya */
-  "userIdArya": string
+  "userIdArya": string,
+  /** Web Support Team Templates - Web Support Team Teamplates */
+  "templatesListId": string
 }
 
 /** Preferences accessible in all the extension's commands */
