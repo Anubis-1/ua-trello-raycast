@@ -12,21 +12,40 @@
       "title": "Arya",
       "description": "Create Trello Card for Arya in Web Support Board",
       "icon": "arya.png",
-      "mode": "view"
+      "mode": "view",
+      "render": "src/arya.tsx"
     },
     {
       "name": "christine",
       "title": "Christine",
       "description": "Create Trello Card for Christine in Sauers Board",
       "icon": "christine.png",
-      "mode": "view"
+      "mode": "view",
+      "render": "src/christine.tsx"
     },
     {
       "name": "kirsty",
       "title": "Kirsty",
       "description": "Create Trello Card for Kirsty in Sauers Board",
       "icon": "kirsty.png",
-      "mode": "view"
+      "mode": "view",
+      "render": "src/kirsty.tsx"
+    },
+    {
+      "name": "show-links",
+      "title": "Show Saved Trello Links",
+      "description": "Show saved Trello card links",
+      "icon": "command-icon.png",
+      "mode": "view",
+      "render": "src/show-links.tsx"
+    },
+    {
+      "name": "search-trello-cards",
+      "title": "Search Trello Cards",
+      "description": "Show Trello Cards",
+      "icon": "command-icon.png",
+      "mode": "view",
+      "render": "src/search-trello-cards.tsx"
     }
   ],
   "dependencies": {
@@ -42,84 +61,84 @@
     "typescript": "^5.4.5"
   },
   "preferences": [
-      {
-        "description": "Trello API Key",
-        "name": "apiKey",
-        "required": true,
-        "title": "Trello API Key",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello Token",
-        "name": "apiToken",
-        "required": true,
-        "title": "Trello API Token",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello Board ID for Arya",
-        "name": "boardIdArya",
-        "required": true,
-        "title": "Trello List ID for Arya",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello List ID for Christine",
-        "name": "boardIdChristine",
-        "required": true,
-        "title": "Trello List ID for Christine",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello List ID for Kirsty",
-        "name": "listIdKirsty",
-        "required": true,
-        "title": "Trello List ID for Kirsty",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello List ID for Arya",
-        "name": "listIdArya",
-        "required": true,
-        "title": "Trello List ID for Arya",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello User ID for Christine",
-        "name": "userIdChristine",
-        "required": true,
-        "title": "Trello User ID for Christine",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello User ID for Kirsty",
-        "name": "userIdKirsty",
-        "required": true,
-        "title": "Trello User ID for Kirsty",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello User ID for Anu",
-        "name": "UserIdAnu",
-        "required": true,
-        "title": "Trello User ID for Anu",
-        "type": "textfield"
-      },
-      {
-        "description": "Trello User ID for Arya",
-        "name": "userIdArya",
-        "required": true,
-        "title": "Trello User ID for Arya",
-        "type": "textfield"
-      },
-      {
-        "description": "Web Support Team Teamplates",
-        "name": "templatesListId",
-        "required": true,
-        "title": "Web Support Team Templates",
-        "type": "textfield"
-      }
-    ],
+    {
+      "description": "Trello API Key",
+      "name": "apiKey",
+      "required": true,
+      "title": "Trello API Key",
+      "type": "textfield"
+    },
+    {
+      "description": "Trello Token",
+      "name": "apiToken",
+      "required": true,
+      "title": "Trello API Token",
+      "type": "textfield"
+    },
+    {
+      "description": "Trello List ID for Kirsty",
+      "name": "listIdKirsty",
+      "required": true,
+      "title": "Trello List ID for Kirsty",
+      "type": "textfield"
+    },
+    {
+      "description": "Trello List ID for Arya",
+      "name": "listIdArya",
+      "required": true,
+      "title": "Trello List ID for Arya",
+      "type": "textfield"
+    },
+    {
+      "description": "Trello List ID for Christine",
+      "name": "listIdChristine",
+      "required": true,
+      "title": "Trello List ID for Christine",
+      "type": "textfield"
+    },
+    {
+      "description": "Trello List ID for Web Support Team Templates",
+      "name": "templatesListId",
+      "required": true,
+      "title": "Trello List ID for Templates",
+      "type": "textfield"
+    },
+    {
+      "description": "Your Trello User ID",
+      "name": "userIdAnu",
+      "required": true,
+      "title": "Trello User ID for Anu",
+      "type": "textfield"
+    },
+    {
+      "description": "Your Trello User ID",
+      "name": "userIdArya",
+      "required": true,
+      "title": "Trello User ID for Arya",
+      "type": "textfield"
+    },
+    {
+      "description": "Your Trello User ID",
+      "name": "userIdKirsty",
+      "required": true,
+      "title": "Trello User ID for Kirsty",
+      "type": "textfield"
+    },
+    {
+      "description": "Your Trello User ID",
+      "name": "userIdChristine",
+      "required": true,
+      "title": "Trello User ID for Christine",
+      "type": "textfield"
+    },
+    {
+      "description": "Your Creator ID",
+      "name": "idMemberCreator",
+      "required": true,
+      "title": "Trello Creator ID for Anu",
+      "type": "textfield"
+    }
+  ],
   "scripts": {
     "build": "ray build -e dist",
     "dev": "ray develop",

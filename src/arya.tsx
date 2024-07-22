@@ -56,13 +56,13 @@ export default function Command() {
   async function handleSubmit(values: Values) {
     let cardData;
     const currentDate = new Date();
-    const formattedDate = `[${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}]`;
+    const formattedDate = `[${currentDate.getDate().toString().padStart(2, "0")}-${(currentDate.getMonth() + 1).toString().padStart(2, "0")}-${currentDate.getFullYear()}]`;
 
     let selectedTemplateCard;
 
     if (values.templateCardId) {
       // Use template card data
-      selectedTemplateCard = templateCards.find(card => card.id === values.templateCardId);
+      selectedTemplateCard = templateCards.find((card) => card.id === values.templateCardId);
       if (selectedTemplateCard) {
         cardData = {
           name: `${values.cardTitle || selectedTemplateCard.name} ${formattedDate}`,
@@ -94,7 +94,7 @@ export default function Command() {
       if (response.status === 200 || response.status === 201) {
         const newCardId = response.data.id;
         showToast({ title: "Card Created", message: "Successfully created Trello card" });
-        
+
         // Copy checklists from template card if template was used
         if (selectedTemplateCard) {
           await copyChecklists(selectedTemplateCard.id, newCardId);
